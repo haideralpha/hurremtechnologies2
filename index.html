@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurrem Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0c10;
+  --bg-soft:#0e1116;
+  --card:#12151c;
+  --card-2:#0f131a;
+  --border:rgba(255,255,255,.07);
+  --border-2:rgba(255,255,255,.1);
+  --text:#f4f6fb;
+  --muted:#9aa3b2;
+  --muted-2:#6b7383;
+  --blue:#4f6ef7;
+  --blue-2:#3b5bf0;
+  --accent:#7c5cff;
+  --accent-pink:#e84 d8c;
+  --radius:18px;
+  --maxw:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* SCROLL FIX: kill horizontal overflow everywhere */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+section{position:relative}
+
+/* ---------- NAV ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,12,16,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+.logo{width:30px;height:30px;flex:none}
+.nav-links{display:flex;gap:30px;font-size:15px}
+.nav-links a{color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:24px}
+.client-login{color:var(--muted);font-size:15px;transition:color .2s}
+.client-login:hover{color:var(--text)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+  font-weight:600;font-size:15px;border-radius:999px;cursor:pointer;
+  border:none;transition:transform .15s,box-shadow .2s,background .2s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;padding:12px 22px;box-shadow:0 8px 24px rgba(63,91,240,.35)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 30px rgba(63,91,240,.45)}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);padding:12px 20px;border:1px solid var(--border-2)}
+.btn-ghost:hover{background:rgba(255,255,255,.09)}
+.menu-toggle{display:none;background:none;border:none;color:var(--text);font-size:26px;cursor:pointer}
+
+/* ---------- SHARED ---------- */
+.eyebrow{color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:22px}
+h1.hero-title{font-size:clamp(48px,7vw,92px);font-weight:800;line-height:.98;letter-spacing:-.03em}
+h2.sec-title{font-size:clamp(40px,5.5vw,68px);font-weight:800;line-height:1.02;letter-spacing:-.03em}
+.lead{color:var(--muted);font-size:18px;line-height:1.6;max-width:520px}
+.divider{width:120px;height:3px;background:linear-gradient(90deg,var(--blue),transparent);border-radius:3px;margin:28px 0}
+.text-link{color:var(--blue);font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
+.text-link:hover{gap:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.visual{
+  border-radius:24px;overflow:hidden;border:1px solid var(--border);
+  background:radial-gradient(circle at 50% 40%,#0d1830,#070a12 70%);
+  aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.visual img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- HERO ---------- */
+#hero{padding:70px 0 90px}
+#hero .grid2{grid-template-columns:560px 1fr}
+.hero-cta{display:flex;align-items:center;gap:22px;margin-top:34px;flex-wrap:wrap}
+.see-services{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--text)}
+
+/* ---------- SERVICES ---------- */
+#services{padding:90px 0}
+.service-card{
+  display:flex;align-items:center;gap:18px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px 24px;margin-bottom:18px;
+  transition:transform .2s,border-color .2s,background .2s;cursor:pointer;
+}
+.service-card:hover{transform:translateX(6px);border-color:var(--border-2);background:#161a22}
+.svc-icon{width:52px;height:52px;border-radius:14px;background:rgba(79,110,247,.14);display:flex;align-items:center;justify-content:center;flex:none;color:var(--blue)}
+.svc-body{flex:1}
+.svc-body h3{font-size:20px;font-weight:700;margin-bottom:4px}
+.svc-body p{color:var(--muted);font-size:15px}
+.svc-arrow{color:var(--muted-2);font-size:20px}
+.services-head{margin-bottom:48px}
+
+/* ---------- INDUSTRIES ---------- */
+#industries{padding:90px 0}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.ind-card{
+  background:var(--card-2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:34px 20px;text-align:center;
+  transition:transform .2s,border-color .2s;cursor:pointer;
+}
+.ind-card:hover{transform:translateY(-4px);border-color:var(--border-2)}
+.ind-card .ico{color:var(--blue);margin-bottom:16px;display:flex;justify-content:center}
+.ind-card span{font-weight:600;font-size:16px}
+
+/* ---------- PROCESS ---------- */
+#process{padding:90px 0}
+.steps{margin-top:44px;position:relative}
+.step{display:flex;align-items:center;gap:20px;margin-bottom:14px}
+.step-icon{width:50px;height:50px;border-radius:50%;background:rgba(79,110,247,.16);display:flex;align-items:center;justify-content:center;color:var(--blue);flex:none;z-index:2}
+.step.active .step-icon{background:var(--blue);color:#fff;box-shadow:0 0 0 6px rgba(79,110,247,.15)}
+.step-card{flex:1;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between}
+.step-card h4{font-size:16px;font-weight:700}
+.step-card p{color:var(--muted);font-size:14px}
+.step-num{font-size:22px;font-weight:800;color:var(--muted-2)}
+.step.active .step-num{color:var(--blue)}
+/* the original had each card progressively narrower / faded — replicate subtly */
+.step:nth-child(2) .step-card{width:96%}
+.step:nth-child(3) .step-card{width:92%;opacity:.92}
+.step:nth-child(4) .step-card{width:86%;opacity:.8}
+.step:nth-child(5) .step-card{width:80%;opacity:.66}
+
+/* ---------- RESULTS ---------- */
+#results{padding:90px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.stat .big{font-size:30px;font-weight:800;background:linear-gradient(135deg,#6f86ff,#a07bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .lbl{color:var(--muted);font-size:14px;margin-top:6px}
+.quote{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.quote p{font-weight:600;font-size:15px;margin-bottom:12px}
+.quote .who{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+.avatar{width:26px;height:26px;border-radius:50%;background:rgba(124,92,255,.2);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+
+/* ---------- ABOUT ---------- */
+#about{padding:90px 0}
+#about p{color:var(--muted);font-size:17px;line-height:1.65;margin-bottom:18px;max-width:560px}
+.values-label{color:var(--muted-2);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:30px 0 16px;font-weight:700}
+.tags{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.tag{padding:9px 18px;border-radius:999px;border:1px solid rgba(79,110,247,.3);background:rgba(79,110,247,.08);font-size:14px;font-weight:500;color:#bcc6ff}
+
+/* ---------- PRICING ---------- */
+#pricing{padding:90px 0}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;align-items:start}
+.price-card{background:var(--card-2);border:1px solid var(--border);border-radius:20px;padding:28px 26px;position:relative}
+.price-card.featured{border-color:rgba(79,110,247,.5);background:#101626}
+.badge{position:absolute;top:-13px;left:26px;background:linear-gradient(135deg,var(--accent),var(--blue));color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:999px}
+.tier{font-size:20px;font-weight:700}
+.tier-sub{color:var(--muted);font-size:14px;margin:6px 0 18px}
+.price{font-size:40px;font-weight:800}
+.price span{font-size:16px;color:var(--muted);font-weight:500}
+.feat{list-style:none;margin:22px 0}
+.feat li{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:14px;margin-bottom:11px}
+.feat li::before{content:"✓";color:var(--blue);font-weight:700;flex:none}
+.price-btn{width:100%;padding:13px;border-radius:12px;font-weight:600;cursor:pointer;border:1px solid var(--border-2);background:rgba(255,255,255,.05);color:var(--text);transition:background .2s}
+.price-btn:hover{background:rgba(255,255,255,.1)}
+.price-btn.primary{background:linear-gradient(135deg,var(--blue),var(--blue-2));border:none;box-shadow:0 8px 24px rgba(63,91,240,.3)}
+
+/* ---------- FAQ ---------- */
+#faq{padding:90px 0}
+.faq-list{margin-top:40px;max-width:620px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:var(--text);font-weight:600;font-size:16px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left}
+.faq-q .chev{transition:transform .25s;color:var(--muted)}
+.faq-item.open .faq-q .chev{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--muted);font-size:14px;line-height:1.6}
+.faq-a div{padding:0 22px 20px}
+
+/* ---------- CONTACT ---------- */
+#contact{padding:90px 0}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.form-grid .full{grid-column:1/-1}
+.field{width:100%;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 18px;color:var(--text);font-family:inherit;font-size:15px}
+.field::placeholder{color:var(--muted-2)}
+.field:focus{outline:none;border-color:var(--blue)}
+textarea.field{min-height:120px;resize:vertical}
+.send{width:100%;padding:16px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;font-weight:600;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 8px 24px rgba(63,91,240,.3)}
+.contact-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:26px;color:var(--muted);font-size:14px}
+.contact-meta span{display:flex;align-items:center;gap:8px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--border);padding:60px 0 30px;margin-top:40px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+.foot-about p{color:var(--muted);font-size:14px;line-height:1.6;margin:18px 0;max-width:280px}
+.socials{display:flex;gap:12px}
+.social{width:34px;height:34px;border-radius:9px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:color .2s,border-color .2s}
+.social:hover{color:var(--text);border-color:var(--border-2)}
+.foot-col h5{font-size:14px;font-weight:700;margin-bottom:18px}
+.foot-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:12px;transition:color .2s}
+.foot-col a:hover{color:var(--text)}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid var(--border);margin-top:48px;padding-top:26px;color:var(--muted-2);font-size:13px}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:980px){
+  .nav-links,.client-login{display:none}
+  .menu-toggle{display:block}
+  .grid2,#hero .grid2{grid-template-columns:1fr;gap:40px}
+  .visual{order:-1;max-width:520px;margin:0 auto}
+  .ind-grid,.price-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .step-card{width:100%!important;opacity:1!important}
+}
+@media(max-width:560px){
+  .wrap{padding:0 20px}
+  .foot-grid{grid-template-columns:1fr}
+}
+/* mobile menu */
+.mobile-menu{display:none;flex-direction:column;gap:4px;padding:16px 32px 24px;border-bottom:1px solid var(--border);background:var(--bg-soft)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--muted);padding:10px 0;font-size:16px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#hero" class="brand">
+      <svg class="logo" viewBox="0 0 32 32" fill="none"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8538c"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><rect x="6" y="6" width="20" height="20" rx="4" transform="rotate(45 16 16)" stroke="url(#lg)" stroke-width="2.4"/><rect x="11" y="11" width="10" height="10" rx="2" transform="rotate(45 16 16)" fill="url(#lg)"/></svg>
+      Hurrem Technologies
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#process">Process</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#" class="client-login">Client login</a>
+      <button class="btn btn-primary" onclick="location.href='#contact'">Book a call</button>
+      <button class="menu-toggle" id="menuBtn">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#industries">Industries</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#">Client login</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero"><div class="wrap grid2">
+  <div class="visual"><img src="assets/hero.svg" alt="AI automation isometric visual"></div>
+  <div>
+    <div class="eyebrow">AI Automation + Remote Workforce</div>
+    <h1 class="hero-title">Operate smarter.<br>Scale faster.</h1>
+    <div class="divider"></div>
+    <p class="lead">Hurrem Technologies helps U.S. businesses cut costs and scale by combining AI automation with a trained remote workforce.</p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="location.href='#contact'">Book a call →</button>
+      <a href="#services" class="see-services">See services ⌄</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- SERVICES -->
+<section id="services"><div class="wrap grid2">
+  <div>
+    <div class="services-head"><h2 class="sec-title">Services built<br>for speed</h2></div>
+    <div class="service-card">
+      <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
+      <div class="svc-body"><h3>AI Automation</h3><p>Workflow, CRM, reporting, and customer support.</p></div>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2"/><circle cx="18" cy="8" r="2.5"/></svg></div>
+      <div class="svc-body"><h3>Remote Workforce</h3><p>VAs, leasing support, medical assistants.</p></div>
+      <span class="svc-arrow">→</span>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+      <div class="svc-body"><h3>Real Estate Ops</h3><p>Tenant comms, maintenance, leasing coordination.</p></div>
+      <span class="svc-arrow">→</span>
+    </div>
+  </div>
+  <div class="visual"><img src="assets/hero.svg" alt="services visual"></div>
+</div></section>
+
+<!-- INDUSTRIES -->
+<section id="industries"><div class="wrap grid2">
+  <div class="visual"><img src="assets/hero.svg" alt="industries visual"></div>
+  <div>
+    <h2 class="sec-title">Industries<br>we serve</h2>
+    <div class="ind-grid">
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></div><span>Real Estate</span></div>
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div><span>Healthcare</span></div>
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 7h14M7 7l-3 7a3.5 3.5 0 0 0 6 0L7 7zM17 7l-3 7a3.5 3.5 0 0 0 6 0l-3-7z"/></svg></div><span>Legal</span></div>
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 13h11l1.8-9H6"/></svg></div><span>E-commerce</span></div>
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 13a10 10 0 0 1 20 0"/><path d="M12 3v4M8 8l1 2M16 8l-1 2"/><rect x="2" y="13" width="20" height="4" rx="1"/></svg></div><span>Construction</span></div>
+      <div class="ind-card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg></div><span>Insurance</span></div>
+    </div>
+    <a href="#contact" class="text-link" style="margin-top:28px">Request a sector brief →</a>
+  </div>
+</div></section>
+
+<!-- PROCESS -->
+<section id="process"><div class="wrap grid2">
+  <div>
+    <h2 class="sec-title">How it works</h2>
+    <div class="steps">
+      <div class="step active">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div>
+        <div class="step-card"><div><h4>Discover</h4><p>Analyze your workflows</p></div><span class="step-num">01</span></div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7-4-4-7 7-3 7 7-3z"/></svg></div>
+        <div class="step-card"><div><h4>Design</h4><p>Map automation strategy</p></div><span class="step-num">02</span></div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div>
+        <div class="step-card"><div><h4>Build</h4><p>Implement AI systems</p></div><span class="step-num">03</span></div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div>
+        <div class="step-card"><div><h4>Train</h4><p>Onboard your team</p></div><span class="step-num">04</span></div>
+      </div>
+      <div class="step">
+        <div class="step-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <div class="step-card"><div><h4>Optimize</h4><p>Continuous improvement</p></div><span class="step-num">05</span></div>
+      </div>
+    </div>
+    <a href="#contact" class="text-link" style="margin-top:28px">Get a timeline estimate →</a>
+  </div>
+  <div class="visual"><img src="assets/hero.svg" alt="process visual"></div>
+</div></section>
+
+<!-- RESULTS -->
+<section id="results"><div class="wrap grid2">
+  <div class="visual"><img src="assets/hero.svg" alt="results visual"></div>
+  <div>
+    <h2 class="sec-title">Results that<br>speak</h2>
+    <div class="stats" style="margin-top:34px">
+      <div class="stat"><div class="big">Up to 40%</div><div class="lbl">cost reduction</div></div>
+      <div class="stat"><div class="big">2×</div><div class="lbl">process completion</div></div>
+      <div class="stat"><div class="big">24/7</div><div class="lbl">coverage</div></div>
+    </div>
+    <div class="quote">
+      <p>"Hurrem cut our admin time in half within the first month."</p>
+      <div class="who"><span class="avatar">P</span> Property Manager, Real Estate Firm</div>
+    </div>
+    <div class="quote">
+      <p>"Reliable, fast, and easy to scale. Highly recommended."</p>
+      <div class="who"><span class="avatar">O</span> Operations Director, Healthcare Group</div>
+    </div>
+    <a href="#" class="text-link">Read case studies →</a>
+  </div>
+</div></section>
+
+<!-- ABOUT -->
+<section id="about"><div class="wrap grid2">
+  <div>
+    <h2 class="sec-title">Built for<br>modern teams</h2>
+    <p style="margin-top:24px">We're a forward-thinking tech company integrating AI with global talent. Our approach combines cutting-edge automation with highly skilled remote professionals to transform how businesses operate.</p>
+    <p>Our mission is to make operations effortless—so teams can focus on growth while we handle the complexity of scaling.</p>
+    <div class="values-label">Our Values</div>
+    <div class="tags">
+      <span class="tag">Innovation</span>
+      <span class="tag">Reliability</span>
+      <span class="tag">Efficiency</span>
+      <span class="tag">Global Talent</span>
+      <span class="tag">Client Success</span>
+    </div>
+    <a href="#contact" class="text-link">Meet the team →</a>
+  </div>
+  <div class="visual"><img src="assets/hero.svg" alt="about visual"></div>
+</div></section>
+
+<!-- PRICING -->
+<section id="pricing"><div class="wrap grid2">
+  <div class="visual"><img src="assets/hero.svg" alt="pricing visual"></div>
+  <div>
+    <h2 class="sec-title">Simple<br>pricing</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="tier">Starter</div>
+        <div class="tier-sub">Essential automation + support</div>
+        <div class="price">$999<span>/month</span></div>
+        <ul class="feat">
+          <li>1 AI workflow automation</li>
+          <li>1 dedicated remote assistant</li>
+          <li>Basic CRM integration</li>
+          <li>Email support</li>
+          <li>Monthly reporting</li>
+        </ul>
+        <button class="price-btn">Get started</button>
+      </div>
+      <div class="price-card featured">
+        <span class="badge">Most Popular</span>
+        <div class="tier">Growth</div>
+        <div class="tier-sub">More workflows + dedicated team</div>
+        <div class="price">$2,499<span>/month</span></div>
+        <ul class="feat">
+          <li>3 AI workflow automations</li>
+          <li>3 dedicated remote staff</li>
+          <li>Advanced CRM + integrations</li>
+          <li>Priority support</li>
+          <li>Weekly reporting</li>
+          <li>Process optimization</li>
+        </ul>
+        <button class="price-btn primary">Get started</button>
+      </div>
+      <div class="price-card">
+        <div class="tier">Enterprise</div>
+        <div class="tier-sub">Custom AI + SLA + security</div>
+        <div class="price">Custom</div>
+        <ul class="feat">
+          <li>Unlimited AI automations</li>
+          <li>Dedicated team (5+)</li>
+          <li>Custom integrations</li>
+          <li>24/7 dedicated support</li>
+          <li>Real-time dashboards</li>
+          <li>SLA guarantee</li>
+          <li>Security compliance</li>
+        </ul>
+        <button class="price-btn">Get started</button>
+      </div>
+    </div>
+    <a href="#" class="text-link" style="margin-top:26px">Compare plans →</a>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq"><div class="wrap grid2">
+  <div>
+    <h2 class="sec-title">FAQs</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">How quickly can we get started? <span class="chev">⌄</span></button>
+        <div class="faq-a"><div>Most clients are onboarded within one to two weeks. After a discovery call we map your workflows and begin implementation immediately.</div></div>
+      </div>
+      <div class="faq-item open">
+        <button class="faq-q">What industries do you specialize in? <span class="chev">⌄</span></button>
+        <div class="faq-a"><div>We specialize in Real Estate &amp; Property Management, Healthcare, Legal Services, and Professional Services. Our AI automation and remote workforce solutions are tailored to each industry's specific requirements.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is there a dedicated team assigned? <span class="chev">⌄</span></button>
+        <div class="faq-a"><div>Yes. Every client gets a dedicated team that learns your operations and acts as an extension of your business.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do you handle data security? <span class="chev">⌄</span></button>
+        <div class="faq-a"><div>We follow strict security protocols including encrypted data handling, access controls, and compliance with industry standards.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can we scale up or down? <span class="chev">⌄</span></button>
+        <div class="faq-a"><div>Absolutely. Our plans are flexible—you can scale your team and automations up or down as your needs change.</div></div>
+      </div>
+    </div>
+    <a href="#contact" class="text-link" style="margin-top:24px">Ask us anything →</a>
+  </div>
+  <div class="visual"><img src="assets/hero.svg" alt="faq visual"></div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="wrap grid2">
+  <div class="visual"><img src="assets/hero.svg" alt="contact visual"></div>
+  <div>
+    <h2 class="sec-title">Let's build<br>together</h2>
+    <div class="form-grid">
+      <input class="field" type="text" placeholder="Name">
+      <input class="field" type="text" placeholder="Company">
+      <input class="field" type="email" placeholder="Email">
+      <select class="field">
+        <option>Select Industry</option>
+        <option>Real Estate</option>
+        <option>Healthcare</option>
+        <option>Legal</option>
+        <option>E-commerce</option>
+        <option>Construction</option>
+        <option>Insurance</option>
+      </select>
+      <textarea class="field full" placeholder="Tell us about your project..."></textarea>
+      <button class="send full">Send message ✈</button>
+    </div>
+    <div class="contact-meta">
+      <span>📞 +1 (917) 718-2737</span>
+      <span>✉ info@hurremtechnologies.com</span>
+      <span>📍 Sheridan, WY</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div class="foot-about">
+      <a href="#hero" class="brand" style="font-size:16px">
+        <svg class="logo" viewBox="0 0 32 32" fill="none"><rect x="6" y="6" width="20" height="20" rx="4" transform="rotate(45 16 16)" stroke="url(#lg)" stroke-width="2.4"/><rect x="11" y="11" width="10" height="10" rx="2" transform="rotate(45 16 16)" fill="url(#lg)"/></svg>
+      </a>
+      <p>Operate smarter. Scale faster. AI automation + remote workforce for modern U.S. businesses.</p>
+      <div class="socials">
+        <a class="social" href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3 9h2v12H3zM9 9h2v2c.5-1 2-2 3.5-2 3 0 3.5 2 3.5 4.5V21h-2v-6c0-1.5-.5-2.5-2-2.5S11 13.5 11 15v6H9z"/></svg></a>
+        <a class="social" href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.6.8-2.5 1a4 4 0 0 0-6.8 3.6A11 11 0 0 1 4 4.5a4 4 0 0 0 1.2 5.3c-.6 0-1.2-.2-1.8-.5a4 4 0 0 0 3.2 4 4 4 0 0 1-1.8 0 4 4 0 0 0 3.7 2.8A8 8 0 0 1 2 17.7a11 11 0 0 0 6 1.8c7.2 0 11.1-6 11.1-11.1v-.5c.8-.6 1.4-1.3 1.9-2.1z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col"><h5>Services</h5><a href="#services">AI Automation</a><a href="#services">Remote Workforce</a><a href="#services">Real Estate Ops</a></div>
+    <div class="foot-col"><h5>Company</h5><a href="#about">About</a><a href="#process">Process</a><a href="#pricing">Pricing</a></div>
+    <div class="foot-col"><h5>Support</h5><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="#">Client Login</a></div>
+    <div class="foot-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Hurrem Technologies LLC. All rights reserved.</span>
+    <span>75 E 3rd St Ste 7, Sheridan, WY 82801 • +1 (917) 718-2737</span>
+  </div>
+</div></footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=q.parentElement;
+    var a=item.querySelector('.faq-a');
+    var open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(it){
+      it.classList.remove('open');
+      it.querySelector('.faq-a').style.maxHeight=null;
+    });
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+  });
+});
+// open the default-open one
+window.addEventListener('load',function(){
+  var o=document.querySelector('.faq-item.open .faq-a');
+  if(o)o.style.maxHeight=o.scrollHeight+'px';
+});
+// mobile menu
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+document.querySelectorAll('#mobileMenu a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('mobileMenu').classList.remove('open');});
+});
+</script>
+</body>
+</html>
