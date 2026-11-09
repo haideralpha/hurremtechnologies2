@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#ffffff;--bg-soft:#f6f8fd;--card:#ffffff;--card-2:#ffffff;--card-hover:#f6f8fd;--border:#e8ecf5;--border-2:#dbe2ef;--border-glow:rgba(79,110,247,.4);--text:#2f3a4d;--ink:#0f172a;--muted:#4a5568;--muted-2:#94a3b8;--blue:#4f6ef7;--blue-2:#3b5bf0;--blue-dark:#2f49d4;--blue-light:#6d86ff;--blue-wash:#eef2ff;--accent:#7c5cff;--accent-2:#9b7fff;--accent-pink:#e8538c;--green:#22c55e;--navy:#0b1020;--radius:18px;--maxw:1500px;--shadow-sm:0 1px 2px rgba(15,23,42,.04),0 2px 6px rgba(15,23,42,.05);--shadow:0 6px 16px rgba(15,23,42,.06),0 16px 40px rgba(15,23,42,.08);--shadow-lg:0 12px 32px rgba(15,23,42,.08),0 40px 80px rgba(15,23,42,.12);--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
+:root{--bg:#ffffff;--bg-soft:#f6f8fd;--card:#ffffff;--card-2:#ffffff;--card-hover:#f6f8fd;--border:#e8ecf5;--border-2:#dbe2ef;--border-glow:rgba(79,110,247,.4);--text:#2f3a4d;--ink:#0f172a;--muted:#4a5568;--muted-2:#94a3b8;--blue:#4f6ef7;--blue-2:#3b5bf0;--blue-dark:#2f49d4;--blue-light:#6d86ff;--blue-wash:#eef2ff;--accent:#7c5cff;--accent-2:#9b7fff;--accent-pink:#e8538c;--green:#22c55e;--navy:#0b1020;--radius:18px;--maxw:1760px;--shadow-sm:0 1px 2px rgba(15,23,42,.04),0 2px 6px rgba(15,23,42,.05);--shadow:0 6px 16px rgba(15,23,42,.06),0 16px 40px rgba(15,23,42,.08);--shadow-lg:0 12px 32px rgba(15,23,42,.08),0 40px 80px rgba(15,23,42,.12);--ease-out-expo:cubic-bezier(0.16,1,0.3,1)}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}html,body{width:100%;max-width:100%;overflow-x:hidden}
 body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}a{color:inherit;text-decoration:none}button{font-family:inherit}
@@ -40,7 +40,7 @@ header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(20px) satu
 .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:74px;position:relative;z-index:1}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.03em;font-family:'Inter',sans-serif;flex:none}
 .brand:hover .logo-mark{width:32px;height:32px;flex:none;transition:transform .4s var(--ease-out-expo)}
-.nav-links{display:flex;gap:2px;font-size:14px;margin-left:auto}
+.nav-links{display:flex;gap:2px;font-size:15.5px;margin-left:auto}
 .nav-links a{color:var(--muted);padding:8px 11px;border-radius:8px;transition:color .2s,background .2s;font-weight:500}
 .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--blue-wash)}
 .nav-right{display:flex;align-items:center;gap:16px}
@@ -57,7 +57,7 @@ header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(20px) satu
 .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--blue-light);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;padding:6px 14px;border-radius:999px;background:rgba(79,110,247,.1);border:1px solid rgba(79,110,247,.2)}
 .eyebrow::before{content:'';width:6px;height:6px;background:var(--blue-light);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.6)}}
-h1.page-title{font-family:'Inter',sans-serif;font-size:clamp(38px,5.5vw,72px);font-weight:900;line-height:.95;letter-spacing:-.04em}
+h1.page-title{font-family:'Inter',sans-serif;font-size:clamp(42px,6vw,84px);font-weight:900;line-height:.95;letter-spacing:-.04em}
 h2.sec-title{font-family:'Inter',sans-serif;font-size:clamp(36px,5vw,64px);font-weight:800;line-height:1;letter-spacing:-.035em}
 .gradient-text{background:linear-gradient(120deg,var(--blue-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
 .gradient-text-accent{background:linear-gradient(135deg,var(--blue-light),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -114,6 +114,21 @@ footer{border-top:1px solid var(--border);padding:70px 0 32px;margin-top:40px;ba
 h1.hero-title,h1.page-title,h2.sec-title,h3,.svc-body h3,.duo-card h3,.stat h3,.ind-card span,.brand,.foot-col h5{color:var(--ink)}
 [class*="card"]{box-shadow:var(--shadow-sm)}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)!important}
+
+@media(min-width:641px){
+.lead{font-size:19.5px!important}
+h1.hero-title,h1.page-title{font-size:clamp(46px,5.6vw,88px)!important}
+h2.sec-title{font-size:clamp(34px,4.6vw,60px)!important}
+.svc-body h3,.duo-card h3{font-size:21px!important}
+.svc-body p,.duo-card p{font-size:16px!important}
+.ind-card span{font-size:17px!important}
+.ind-sub{font-size:14.5px!important}
+.stat h3{font-size:19px!important}
+.stat p{font-size:15.5px!important}
+.nav-links{font-size:15.5px!important}
+.cta-strip-inner h2{font-size:clamp(34px,4.2vw,56px)!important}
+.cta-strip-inner p{font-size:18px!important}
+}
 </style>
 </head>
 <body>
