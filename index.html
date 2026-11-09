@@ -138,12 +138,12 @@ h2.sec-title{font-family:'Inter',sans-serif;font-size:clamp(36px,4.8vw,62px);fon
 .stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.25s}
 .stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.3s}
 #hero{padding:92px 0 96px}
-#hero .grid2{grid-template-columns:1.06fr .94fr;gap:56px}
+#hero .grid2{grid-template-columns:1.32fr .68fr;gap:48px}
 .hero-visual-wrap{position:relative;animation:heroFloat 6s ease-in-out infinite}
 @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-.visual{border-radius:26px;overflow:hidden;background:radial-gradient(circle at 50% 28%,#161d35 0%,#0b1020 72%);aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg),0 0 0 1px rgba(15,23,42,.04);position:relative;padding:22px}
-.visual::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 0%,rgba(79,110,247,.22),transparent 55%);pointer-events:none}
-.visual img{width:100%;height:auto;position:relative;z-index:1}
+.visual{display:flex;align-items:center;justify-content:center;background:none;box-shadow:none;border:none;border-radius:0;padding:0;position:relative}
+
+.visual img{width:100%;height:auto;position:relative;z-index:1;border-radius:16px;box-shadow:0 16px 40px rgba(15,23,42,.16)}
 .hero-cta{display:flex;align-items:center;gap:14px;margin-top:34px;flex-wrap:wrap}
 .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.28);color:#15914e;font-size:13px;font-weight:700;padding:7px 15px;border-radius:999px;margin-bottom:20px}
 .hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse-dot 1.5s ease-in-out infinite}
@@ -239,7 +239,7 @@ footer{border-top:1px solid var(--border);padding:72px 0 32px;margin-top:40px;ba
   .hero-cta .btn,.hero-cta a{width:100%!important;justify-content:center;text-align:center;box-sizing:border-box}
   .hero-trust{gap:12px 18px;font-size:12.5px}
   .hero-visual-wrap{max-width:340px}
-  .visual{padding:16px}
+  .visual{padding:0}
   .service-card{padding:18px 18px;gap:14px}
   .svc-icon{width:48px;height:48px}
   .svc-body h3{font-size:16.5px}
@@ -344,7 +344,7 @@ h2.sec-title{font-size:clamp(34px,4.6vw,60px)!important}
       </div>
       <div class="hero-visual-wrap reveal-right">
         <div class="visual">
-          <img src="assets/ecosystem.svg" alt="Hurrem Technologies service ecosystem" style="width:100%;max-width:520px;height:auto;display:block;margin:0 auto">
+          <img src="assets/ecosystem.svg" alt="Hurrem Technologies service ecosystem" style="width:100%;max-width:400px;height:auto;display:block;margin:0 auto">
         </div>
       </div>
     </div>
