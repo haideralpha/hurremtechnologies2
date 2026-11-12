@@ -3,6 +3,14 @@
   'use strict';
   var doc = document;
 
+  /* ---- Tidy the address bar: /services instead of /services.html ---- */
+  try {
+    if (/^https?:$/.test(location.protocol) && /\.html$/.test(location.pathname)) {
+      var clean = location.pathname.replace(/\/index\.html$/, '/').replace(/\.html$/, '');
+      history.replaceState(null, '', clean + location.search + location.hash);
+    }
+  } catch (e) {}
+
   /* ---- Header: soft backdrop once the page has scrolled ---- */
   var header = doc.getElementById('site-header');
   if (header) {
