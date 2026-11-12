@@ -915,7 +915,7 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
 .spark[hidden] { display: none; }
 @keyframes spark-fade { from { opacity: 0; } to { opacity: 1; } }
 .spark__dialog {
-  position: relative; width: min(44rem, 100%); max-height: calc(100vh - 2rem); max-height: calc(100dvh - 2rem);
+  position: relative; width: min(74rem, 100%); max-height: calc(100vh - 2rem); max-height: calc(100dvh - 2rem);
   overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
   background: var(--black-2); border: 1px solid var(--ice-15);
   padding: clamp(1.5rem, 4vw, 3rem);
@@ -942,20 +942,33 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
 .spark__accent { color: var(--accent); }
 .spark__lede { color: var(--ice-65); margin-top: 0.9rem; font-size: 1.0625rem; }
 .spark__fine { color: var(--ice-65); font-size: 0.875rem; line-height: 1.55; margin-top: 1rem; }
-.spark__error { color: var(--ice); font-weight: 500; font-size: 1rem; min-height: 1.5em; }
+.spark__error { color: #9A1B1B; font-weight: 500; font-size: 1rem; margin-top: 0.6rem; }
+.spark__error:empty { display: none; }
+.spark__field.is-missing .spark__input { border-color: #9A1B1B; box-shadow: 0 0 0 3px rgba(154, 27, 27, 0.18); }
+.spark__field.is-missing .spark__chips { outline: 2px dashed #9A1B1B; outline-offset: 6px; border-radius: 0.6rem; }
+.spark__field.is-missing .spark__label { color: #9A1B1B; }
 .spark__status { margin-top: 1rem; font-size: 1rem; color: var(--ice-80); min-height: 1.5em; }
 .spark__status a { border-bottom: 1px solid var(--ice-40); }
 
-.spark__form { display: grid; gap: 1.6rem; margin-top: 1.9rem; }
+.spark__form { display: grid; gap: 1.35rem; }
+/* landscape on computers: text on the left, the working part on the right */
+.spark__body { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.spark__col { min-width: 0; }
+.spark__how { list-style: none; margin-top: 1.75rem; display: grid; gap: 0.8rem; counter-reset: none; }
+.spark__how li { display: flex; align-items: center; gap: 0.8rem; font-weight: 500; }
+.spark__how-n { flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--aura-core); border: 1px solid var(--aura-deep); font-size: 0.95rem; }
+.spark__label--gap { margin-top: 1.75rem; }
+.spark__col--text > .spark__go { margin-top: 1.75rem; }
+.spark__col--text .spark__actions { margin-top: 1.5rem; }
 .spark__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 1.5rem; }
 .spark__input {
-  width: 100%; background: transparent; color: var(--ice);
-  border: 0; border-bottom: 1px solid var(--ice-40); border-radius: 0; padding: 0.4rem 0 0.7rem;
+  width: 100%; background: #FFFFFF; color: var(--ice);
+  border: 1px solid var(--ice-40); border-radius: 0.6rem; padding: 0.8rem 1rem;
   font-family: var(--sans); font-size: 1.125rem; line-height: 1.4;
   transition: border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
 .spark__input::placeholder { color: var(--ice-40); opacity: 1; }
-.spark__input:focus { outline: none; border-bottom-color: var(--ice); box-shadow: 0 10px 22px -14px rgba(31, 209, 138, 0.9); }
+.spark__input:focus { outline: none; border-color: var(--aura-deep); box-shadow: 0 0 0 3px rgba(31, 209, 138, 0.35); }
 .spark__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .spark__chip, .spark__sharebtn {
   padding: 0.55rem 1.05rem; border: 1px solid var(--ice-40); border-radius: 999px;
@@ -972,10 +985,10 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
 .spark__body > .spark__go { margin-top: 1.75rem; }
 .spark__go[disabled] { opacity: 0.5; cursor: default; }
 
-.spark__card { display: block; width: 100%; height: auto; margin: 1.75rem 0 1.5rem; border: 1px solid var(--ice-15); }
+.spark__card { display: block; width: 100%; height: auto; border: 1px solid var(--ice-15); }
 .spark__share { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
-.spark__stage { position: relative; width: min(21rem, 78vw); margin: 2rem auto 0.5rem; aspect-ratio: 1; }
+.spark__stage { position: relative; width: min(26rem, 78vw, 62vh); margin: 0.75rem auto; aspect-ratio: 1; }
 .spark__wheel { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 70px rgba(31, 209, 138, 0.45); will-change: transform; }
 .spark__wheel-svg { display: block; width: 100%; height: 100%; font-family: var(--sans); }
 .spark__pointer {
@@ -983,9 +996,9 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
   width: 0; height: 0; border-left: 0.7rem solid transparent; border-right: 0.7rem solid transparent; border-top: 1.35rem solid var(--ice);
   filter: drop-shadow(0 2px 4px rgba(5, 7, 13, 0.3));
 }
-.spark__stage + .spark__go { display: flex; margin-left: auto; margin-right: auto; min-width: 9rem; }
+.spark__col--text > .spark__go { min-width: 11rem; font-size: 1.15rem; padding: 1rem 2.2rem; }
 
-.spark__prize { margin-top: 1.75rem; padding: 1.5rem; border: 1px dashed var(--aura-deep); text-align: center; background: rgba(92, 255, 180, 0.14); }
+.spark__prize { padding: clamp(1.5rem, 4vw, 3.5rem) 1.5rem; border: 1px dashed var(--aura-deep); text-align: center; background: rgba(92, 255, 180, 0.14); }
 .spark__prize .spark__label { margin-bottom: 0.4rem; }
 .spark__code { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 500; letter-spacing: 0.12em; }
 .spark__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
@@ -993,15 +1006,21 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
 
 .spark__hint {
   display: flex; align-items: center; gap: 0.6rem; width: fit-content;
-  margin: clamp(3.5rem, 6vw, 4.75rem) auto 0; padding: 0.6rem 1.1rem;
-  border: 1px solid var(--ice-40); border-radius: 999px; background: rgba(247, 250, 249, 0.7); color: var(--ice);
-  font-family: var(--sans); font-weight: 500; font-size: 0.95rem; line-height: 1.2; cursor: pointer;
+  margin: clamp(3.5rem, 6vw, 4.75rem) auto 0; padding: 1.05rem 1.9rem;
+  border: 1.5px solid var(--ice); border-radius: 999px; background: var(--aura-core); color: var(--ice);
+  font-family: var(--sans); font-weight: 500; font-size: clamp(1.1rem, 1.5vw, 1.35rem); line-height: 1.25; cursor: pointer; text-align: left;
+  box-shadow: 0 0 40px rgba(31, 209, 138, 0.45);
   transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
 }
 .spark__hint:hover, .spark__hint:focus-visible { border-color: var(--ice); box-shadow: 0 0 28px rgba(31, 209, 138, 0.4); }
-.spark__hint-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--aura-mid); box-shadow: 0 0 10px 2px rgba(31, 209, 138, 0.7); animation: pulse 2.4s ease-in-out infinite; }
+.spark__hint-dot { flex: none; width: 11px; height: 11px; border-radius: 50%; background: var(--ice); box-shadow: 0 0 10px 2px rgba(31, 209, 138, 0.7); animation: pulse 2.4s ease-in-out infinite; }
 .mark3d__body { cursor: pointer; }
 
+@media (max-width: 900px) {
+  .spark__body { grid-template-columns: 1fr; gap: 1.75rem; align-items: start; }
+  .spark__dialog { width: min(40rem, 100%); }
+  .spark__how { display: none; }
+}
 @media (max-width: 640px) {
   .spark { padding: 0; align-items: stretch; }
   .spark__dialog { width: 100%; max-height: none; height: 100%; border: 0; }
@@ -1010,4 +1029,15 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
   .spark__range-out { text-align: left; }
   .spark__go { justify-self: stretch; width: 100%; }
   .spark__actions .btn { width: 100%; }
+}
+/* shorter laptop screens: tighten the Spark window so the form fits without scrolling */
+@media (min-width: 901px) and (max-height: 880px) {
+  .spark__dialog { padding: 1.4rem clamp(1.5rem, 3vw, 2.5rem); }
+  .spark__steps { margin-bottom: 0.9rem; }
+  .spark__form { gap: 0.9rem; }
+  .spark__label { margin-bottom: 0.45rem; }
+  .spark__chip { padding: 0.42rem 0.9rem; font-size: 0.9rem; }
+  .spark__input { padding: 0.6rem 0.9rem; font-size: 1.0625rem; }
+  .spark__fine { margin-top: 0.6rem; }
+  .spark__go { margin-top: 0.2rem; }
 }
