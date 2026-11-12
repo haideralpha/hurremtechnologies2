@@ -217,7 +217,7 @@
       var note = doc.createElement('p');
       note.className = 'assistant__note';
       note.appendChild(doc.createTextNode('By sending, you agree to our '));
-      var pp = doc.createElement('a'); pp.href = 'privacy-policy.html'; pp.textContent = 'Privacy Policy';
+      var pp = doc.createElement('a'); pp.href = '/privacy-policy'; pp.textContent = 'Privacy Policy';
       note.appendChild(pp); note.appendChild(doc.createTextNode('.'));
       card.appendChild(note);
       logEl.appendChild(card);
