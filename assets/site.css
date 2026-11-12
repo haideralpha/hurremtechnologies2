@@ -360,6 +360,23 @@ h1.hero-title .gradient-text::after {
 .mark3d__wire--back { transform: translateZ(calc(var(--step) * -46)); opacity: 0.3; }
 .mark3d__wire--back use { stroke: #1FD18A; stroke-width: 1; }
 
+/* hover sparks: only the painted logo reacts, not the empty square around it */
+.mark3d svg { pointer-events: none; }
+.mark3d__layer use, .mark3d__face use { pointer-events: fill; }
+.mark3d__sparks { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.mark3d__glint {
+  position: absolute; left: 0; top: 0; width: 90px; height: 90px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(92, 255, 180, 0.5) 30%, rgba(92, 255, 180, 0) 70%);
+  mix-blend-mode: screen; opacity: 0; transition: opacity 0.35s var(--ease); will-change: transform, opacity;
+}
+.mark3d__spark {
+  position: absolute; background: #5CFFB4; will-change: transform, opacity;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.6 7.5 16.5 11.4 24 12C16.5 12.6 12.6 16.5 12 24C11.4 16.5 7.5 12.6 0 12C7.5 11.4 11.4 7.5 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C12.6 7.5 16.5 11.4 24 12C16.5 12.6 12.6 16.5 12 24C11.4 16.5 7.5 12.6 0 12C7.5 11.4 11.4 7.5 12 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.mark3d__spark--light { background: #FFFFFF; }
+.mark3d__spark--deep { background: #0B6B4A; }
+
 .mark3d__shadow {
   position: absolute; left: 12%; right: 12%; bottom: -20%; height: 14%; border-radius: 50%;
   background: radial-gradient(ellipse at 50% 50%, rgba(31, 209, 138, 0.42) 0%, rgba(11, 107, 74, 0) 70%);

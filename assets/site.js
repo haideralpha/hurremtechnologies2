@@ -55,6 +55,67 @@
     [].forEach.call(targets, function (el) { el.classList.add('visible'); });
   }
 
+  /* ---- 3D logo: sparks where the cursor (or a finger) touches it ---- */
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [].forEach.call(doc.querySelectorAll('.mark3d'), function (mark) {
+    var layer = doc.createElement('div');
+    layer.className = 'mark3d__sparks';
+    layer.setAttribute('aria-hidden', 'true');
+    var glint = doc.createElement('span');
+    glint.className = 'mark3d__glint';
+    layer.appendChild(glint);
+    mark.appendChild(layer);
+
+    var live = 0, last = 0;
+    var onLogo = function (e) { return e.target && e.target.closest && !!e.target.closest('.mark3d__body'); };
+    var place = function (e) {
+      var r = mark.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    };
+    var spark = function (p, power) {
+      if (live > 90 || !layer.animate) return;
+      var el = doc.createElement('span');
+      var tone = Math.random();
+      el.className = 'mark3d__spark' + (tone < 0.35 ? ' mark3d__spark--light' : tone < 0.8 ? ' mark3d__spark--deep' : '');
+      var size = 12 + Math.random() * 20;
+      var angle = Math.random() * Math.PI * 2;
+      var dist = (26 + Math.random() * 58) * power;
+      var dx = Math.cos(angle) * dist, dy = Math.sin(angle) * dist - 10;
+      var jx = (Math.random() - 0.5) * 16, jy = (Math.random() - 0.5) * 16;
+      el.style.width = el.style.height = size + 'px';
+      el.style.left = (p.x + jx - size / 2) + 'px';
+      el.style.top = (p.y + jy - size / 2) + 'px';
+      layer.appendChild(el);
+      live++;
+      var spin = (Math.random() - 0.5) * 220;
+      var anim = el.animate([
+        { transform: 'translate3d(0,0,0) scale(0) rotate(0deg)', opacity: 0 },
+        { transform: 'translate3d(' + dx * 0.45 + 'px,' + dy * 0.45 + 'px,0) scale(1) rotate(' + spin * 0.5 + 'deg)', opacity: 1, offset: 0.25 },
+        { transform: 'translate3d(' + dx * 0.85 + 'px,' + (dy * 0.85 + 6) + 'px,0) scale(0.9) rotate(' + spin * 0.85 + 'deg)', opacity: 1, offset: 0.7 },
+        { transform: 'translate3d(' + dx + 'px,' + (dy + 14) + 'px,0) scale(0) rotate(' + spin + 'deg)', opacity: 0 }
+      ], { duration: 700 + Math.random() * 600, easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)' });
+      anim.onfinish = anim.oncancel = function () { el.remove(); live--; };
+    };
+
+    mark.addEventListener('pointermove', function (e) {
+      if (!onLogo(e)) { glint.style.opacity = '0'; return; }
+      var p = place(e);
+      glint.style.opacity = '1';
+      glint.style.transform = 'translate3d(' + (p.x - 45) + 'px,' + (p.y - 45) + 'px,0)';
+      if (reduceMotion) return;
+      var now = Date.now();
+      if (now - last < 30) return;
+      last = now;
+      spark(p, 1); spark(p, 1); spark(p, 1);
+    });
+    mark.addEventListener('pointerdown', function (e) {
+      if (reduceMotion || !onLogo(e)) return;
+      var p = place(e);
+      for (var i = 0; i < 14; i++) spark(p, 1.7);
+    });
+    mark.addEventListener('pointerleave', function () { glint.style.opacity = '0'; });
+  });
+
   /* ---- FAQ accordion ---- */
   var faqItems = [].slice.call(doc.querySelectorAll('.faq-item'));
   if (faqItems.length) {
