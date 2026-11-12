@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://hurremtechnologies.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/services</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/reputation</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/industries</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/process</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/faq</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/contact</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/privacy-policy</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
-  <url><loc>https://hurremtechnologies.com/terms</loc><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/</loc><lastmod>2026-11-12</lastmod><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/services</loc><lastmod>2026-11-12</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/reputation</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/industries</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/process</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/faq</loc><lastmod>2026-11-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/contact</loc><lastmod>2026-11-12</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/privacy-policy</loc><lastmod>2026-11-12</lastmod><priority>0.3</priority><changefreq>yearly</changefreq></url>
+  <url><loc>https://www.hurremtechnologies.com/terms</loc><lastmod>2026-11-12</lastmod><priority>0.3</priority><changefreq>yearly</changefreq></url>
 </urlset>
