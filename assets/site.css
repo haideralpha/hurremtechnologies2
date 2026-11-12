@@ -899,3 +899,115 @@ footer { position: relative; border-top: 1px solid var(--ice-15); padding: clamp
   .assistant.is-open { right: 0; bottom: 0; left: 0; top: 0; }
   .assistant__panel { position: fixed; inset: 0; width: 100%; height: 100%; height: 100dvh; border: 0; background: rgba(238, 244, 242, 0.98); }
 }
+
+/* ==========================================================================
+   HURREM SPARK — quiz, score card and spin wheel (opened from the logo)
+   ========================================================================== */
+.spark-open { overflow: hidden; }
+.spark {
+  position: fixed; inset: 0; z-index: 140;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  background: rgba(5, 7, 13, 0.45);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  animation: spark-fade 0.4s var(--ease);
+}
+.spark[hidden] { display: none; }
+@keyframes spark-fade { from { opacity: 0; } to { opacity: 1; } }
+.spark__dialog {
+  position: relative; width: min(44rem, 100%); max-height: calc(100vh - 2rem); max-height: calc(100dvh - 2rem);
+  overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+  background: var(--black-2); border: 1px solid var(--ice-15);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-shadow: 0 0 120px rgba(31, 209, 138, 0.35), 0 40px 100px rgba(5, 7, 13, 0.35);
+  animation: assistant-in 0.5s var(--ease);
+}
+.spark__close {
+  position: absolute; right: 1rem; top: 1rem; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--ice-15); cursor: pointer; z-index: 2;
+  transition: border-color 0.5s var(--ease);
+}
+.spark__close:hover, .spark__close:focus-visible { border-color: var(--ice); }
+.spark__steps { display: flex; gap: 0.4rem; margin-bottom: 1.5rem; }
+.spark__steps span { width: 2.2rem; height: 3px; border-radius: 3px; background: var(--ice-15); transition: background-color 0.6s var(--ease); }
+.spark__steps span.is-on { background: var(--aura-mid); }
+
+.spark__eyebrow, .spark__label {
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ice-65);
+}
+.spark__eyebrow { margin-bottom: 0.9rem; }
+.spark__label { margin-bottom: 0.7rem; }
+.spark__title { font-size: clamp(1.6rem, 3.4vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em; padding-right: 2.5rem; }
+.spark__accent { color: var(--accent); }
+.spark__lede { color: var(--ice-65); margin-top: 0.9rem; font-size: 1.0625rem; }
+.spark__fine { color: var(--ice-65); font-size: 0.875rem; line-height: 1.55; margin-top: 1rem; }
+.spark__error { color: var(--ice); font-weight: 500; font-size: 1rem; min-height: 1.5em; }
+.spark__status { margin-top: 1rem; font-size: 1rem; color: var(--ice-80); min-height: 1.5em; }
+.spark__status a { border-bottom: 1px solid var(--ice-40); }
+
+.spark__form { display: grid; gap: 1.6rem; margin-top: 1.9rem; }
+.spark__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 1.5rem; }
+.spark__input {
+  width: 100%; background: transparent; color: var(--ice);
+  border: 0; border-bottom: 1px solid var(--ice-40); border-radius: 0; padding: 0.4rem 0 0.7rem;
+  font-family: var(--sans); font-size: 1.125rem; line-height: 1.4;
+  transition: border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.spark__input::placeholder { color: var(--ice-40); opacity: 1; }
+.spark__input:focus { outline: none; border-bottom-color: var(--ice); box-shadow: 0 10px 22px -14px rgba(31, 209, 138, 0.9); }
+.spark__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.spark__chip, .spark__sharebtn {
+  padding: 0.55rem 1.05rem; border: 1px solid var(--ice-40); border-radius: 999px;
+  background: transparent; color: var(--ice); cursor: pointer;
+  font-family: var(--sans); font-weight: 500; font-size: 0.95rem; line-height: 1.2;
+  transition: border-color 0.4s var(--ease), background-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
+}
+.spark__chip:hover, .spark__chip:focus-visible, .spark__sharebtn:hover, .spark__sharebtn:focus-visible { border-color: var(--ice); box-shadow: 0 0 20px rgba(31, 209, 138, 0.3); }
+.spark__chip[aria-pressed="true"] { background: var(--aura-core); border-color: var(--aura-deep); }
+.spark__range { display: flex; align-items: center; gap: 1.25rem; }
+.spark__range input { flex: 1; min-width: 0; accent-color: var(--aura-mid); height: 1.75rem; }
+.spark__range-out { flex: none; min-width: 9.5rem; font-weight: 500; text-align: right; }
+.spark__go { margin-top: 0.5rem; justify-self: start; }
+.spark__body > .spark__go { margin-top: 1.75rem; }
+.spark__go[disabled] { opacity: 0.5; cursor: default; }
+
+.spark__card { display: block; width: 100%; height: auto; margin: 1.75rem 0 1.5rem; border: 1px solid var(--ice-15); }
+.spark__share { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.spark__stage { position: relative; width: min(21rem, 78vw); margin: 2rem auto 0.5rem; aspect-ratio: 1; }
+.spark__wheel { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 70px rgba(31, 209, 138, 0.45); will-change: transform; }
+.spark__wheel-svg { display: block; width: 100%; height: 100%; font-family: var(--sans); }
+.spark__pointer {
+  position: absolute; left: 50%; top: -0.55rem; z-index: 2; transform: translateX(-50%);
+  width: 0; height: 0; border-left: 0.7rem solid transparent; border-right: 0.7rem solid transparent; border-top: 1.35rem solid var(--ice);
+  filter: drop-shadow(0 2px 4px rgba(5, 7, 13, 0.3));
+}
+.spark__stage + .spark__go { display: flex; margin-left: auto; margin-right: auto; min-width: 9rem; }
+
+.spark__prize { margin-top: 1.75rem; padding: 1.5rem; border: 1px dashed var(--aura-deep); text-align: center; background: rgba(92, 255, 180, 0.14); }
+.spark__prize .spark__label { margin-bottom: 0.4rem; }
+.spark__code { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 500; letter-spacing: 0.12em; }
+.spark__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+.spark__confetti { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+
+.spark__hint {
+  display: flex; align-items: center; gap: 0.6rem; width: fit-content;
+  margin: clamp(3.5rem, 6vw, 4.75rem) auto 0; padding: 0.6rem 1.1rem;
+  border: 1px solid var(--ice-40); border-radius: 999px; background: rgba(247, 250, 249, 0.7); color: var(--ice);
+  font-family: var(--sans); font-weight: 500; font-size: 0.95rem; line-height: 1.2; cursor: pointer;
+  transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
+}
+.spark__hint:hover, .spark__hint:focus-visible { border-color: var(--ice); box-shadow: 0 0 28px rgba(31, 209, 138, 0.4); }
+.spark__hint-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--aura-mid); box-shadow: 0 0 10px 2px rgba(31, 209, 138, 0.7); animation: pulse 2.4s ease-in-out infinite; }
+.mark3d__body { cursor: pointer; }
+
+@media (max-width: 640px) {
+  .spark { padding: 0; align-items: stretch; }
+  .spark__dialog { width: 100%; max-height: none; height: 100%; border: 0; }
+  .spark__row { grid-template-columns: 1fr; }
+  .spark__range { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+  .spark__range-out { text-align: left; }
+  .spark__go { justify-self: stretch; width: 100%; }
+  .spark__actions .btn { width: 100%; }
+}
