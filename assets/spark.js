@@ -88,9 +88,12 @@
       else if (!e.shiftKey && doc.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
     }
   });
-  function render(nodes, focusSel) {
+  function render(left, right, focusSel) {
     body.innerHTML = '';
-    nodes.forEach(function (n) { body.appendChild(n); });
+    var l = el('div', 'spark__col spark__col--text'), r = el('div', 'spark__col spark__col--main');
+    left.forEach(function (n) { l.appendChild(n); });
+    right.forEach(function (n) { r.appendChild(n); });
+    body.appendChild(l); body.appendChild(r);
     dialog.scrollTop = 0;
     var f = focusSel && body.querySelector(focusSel);
     if (f && window.innerWidth > 700) f.focus(); else dialog.querySelector('.spark__close').focus();
@@ -129,10 +132,15 @@
     head.appendChild(el('p', 'spark__eyebrow', 'Hurrem Spark'));
     var h = el('h2', 'spark__title', 'How many hours could you win back?'); h.id = 'sparkTitle';
     head.appendChild(h);
-    head.appendChild(el('p', 'spark__lede', 'Answer five quick questions, get your score card, then spin the wheel for up to 100% off your first month.'));
+    head.appendChild(el('p', 'spark__lede', 'Fill in the short form, get your score card, then spin the wheel for up to 100% off your first month.'));
+    var how = el('ol', 'spark__how');
+    ['Fill in the form', 'Get your score card', 'Spin the wheel'].forEach(function (t, i) {
+      var li = el('li'); li.appendChild(el('span', 'spark__how-n', String(i + 1))); li.appendChild(doc.createTextNode(t)); how.appendChild(li);
+    });
+    head.appendChild(how);
 
     var form = el('form', 'spark__form'); form.noValidate = true;
-    var name = el('input', 'spark__input'); name.type = 'text'; name.autocomplete = 'name'; name.placeholder = 'Your name'; name.setAttribute('aria-label', 'Your name');
+    var name = el('input', 'spark__input'); name.type = 'text'; name.autocomplete = 'name'; name.placeholder = 'e.g. Sarah Malik'; name.setAttribute('aria-label', 'Your name');
     var email = el('input', 'spark__input'); email.type = 'email'; email.autocomplete = 'email'; email.placeholder = 'name@company.com'; email.setAttribute('aria-label', 'Work email');
     var industry = chipGroup('industry', INDUSTRIES, false);
     var size = chipGroup('size', SIZES, false);
@@ -144,28 +152,43 @@
     hoursWrap.appendChild(hours); hoursWrap.appendChild(out);
     var gotcha = el('input', 'assistant__sr'); gotcha.type = 'text'; gotcha.tabIndex = -1; gotcha.autocomplete = 'off'; gotcha.setAttribute('aria-hidden', 'true');
     var error = el('p', 'spark__error'); error.setAttribute('role', 'alert');
+    var fName = field('Your name', name), fEmail = field('Work email', email), fInd = field('Your industry', industry),
+        fSize = field('Team size', size), fTasks = field('Which tasks eat your week? Pick any', tasks);
+    var flag = function (f, msg, focusEl) {
+      [fName, fEmail, fInd, fSize, fTasks].forEach(function (x) { x.classList.remove('is-missing'); });
+      f.classList.add('is-missing');
+      error.textContent = msg;
+      f.appendChild(error);
+      if (f.scrollIntoView) f.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+      if (focusEl) focusEl.focus();
+    };
+    form.addEventListener('input', function () { error.textContent = ''; [fName, fEmail, fInd, fSize, fTasks].forEach(function (x) { x.classList.remove('is-missing'); }); });
+    form.addEventListener('click', function (e) { if (e.target.classList && e.target.classList.contains('spark__chip')) { var f = e.target.closest('.spark__field'); if (f) f.classList.remove('is-missing'); if (f && f.contains(error)) error.textContent = ''; } });
     var go = el('button', 'btn btn-primary spark__go', 'See my score →'); go.type = 'submit';
 
     var row = el('div', 'spark__row');
-    row.appendChild(field('Your name', name)); row.appendChild(field('Work email', email));
+    row.appendChild(fName); row.appendChild(fEmail);
     form.appendChild(row);
-    form.appendChild(field('Your industry', industry));
-    form.appendChild(field('Team size', size));
-    form.appendChild(field('Which tasks eat your week? Pick any', tasks));
+    form.appendChild(fInd);
+    form.appendChild(fSize);
+    form.appendChild(fTasks);
     form.appendChild(field('Hours your team spends on them each week', hoursWrap));
-    form.appendChild(gotcha); form.appendChild(error); form.appendChild(go);
+    form.appendChild(gotcha); form.appendChild(go);
     form.appendChild(el('p', 'spark__fine', 'We use your answers to prepare your score and to contact you about it. See our Privacy Policy.'));
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var a = { name: name.value.trim(), email: email.value.trim(), industry: industry.value(), size: size.value(), tasks: tasks.value(), hours: Number(hours.value), bot: !!gotcha.value };
-      var missing = !a.name ? 'your name' : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email) ? 'a valid email address' : !a.industry ? 'your industry' : !a.size ? 'your team size' : !a.tasks.length ? 'at least one task' : '';
-      if (missing) { error.textContent = 'Please add ' + missing + '.'; return; }
+      if (!a.name) { flag(fName, 'Type your name in this box to continue.', name); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(a.email)) { flag(fEmail, 'Type your email address in this box, for example name@company.com.', email); return; }
+      if (!a.industry) { flag(fInd, 'Choose your industry by clicking one of these buttons.'); return; }
+      if (!a.size) { flag(fSize, 'Choose your team size by clicking one of these buttons.'); return; }
+      if (!a.tasks.length) { flag(fTasks, 'Click at least one task that takes up your week.'); return; }
       a.saved = Math.max(1, Math.round(a.hours * AUTOMATABLE));
       state.answers = a;
       showCard();
     });
-    render([head, form], '.spark__input');
+    render([head], [form], '.spark__input');
   }
 
   /* ---------------- Step 2: score card ---------------- */
@@ -243,7 +266,8 @@
 
     var go = el('button', 'btn btn-primary spark__go', 'Spin the wheel →'); go.type = 'button';
     go.addEventListener('click', showWheel);
-    render([head, canvas, el('p', 'spark__label', 'Share your score'), share, go], '.spark__go');
+    var shareLabel = el('p', 'spark__label spark__label--gap', 'Share your score');
+    render([head, shareLabel, share, go], [canvas], '.spark__go');
   }
 
   /* ---------------- Step 3: wheel ---------------- */
@@ -310,7 +334,7 @@
       wheel.style.transform = 'rotate(' + turn + 'deg)';
       setTimeout(done, 5700);
     });
-    render([head, stage, go, odds, terms], '.spark__go');
+    render([head, go, odds, terms], [stage], '.spark__go');
   }
 
   /* ---------------- Step 4: prize ---------------- */
@@ -344,7 +368,7 @@
     wa.href = 'https://wa.me/19177182737?text=' + encodeURIComponent('Hello, I won ' + r.off + '% off on Hurrem Spark. My code is ' + r.code + '.');
     actions.appendChild(book); actions.appendChild(wa);
 
-    render([head, box, status, actions, terms], '.btn');
+    render([head, status, actions, terms], [box], '.btn');
     if (!returning && !reduceMotion) confetti();
 
     if (returning || r.sent || a.bot) return;
