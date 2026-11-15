@@ -65,6 +65,7 @@
 
   /* ---- 3D logo: sparks where the cursor (or a finger) touches it ---- */
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var SPARK_COLORS = ['#FDB913', '#F58220', '#EC1C24', '#C41E4A', '#A31F60', '#6E347E', '#20409A', '#FFFFFF'];   // the logo colours
   [].forEach.call(doc.querySelectorAll('.mark3d'), function (mark) {
     var layer = doc.createElement('div');
     layer.className = 'mark3d__sparks';
@@ -83,8 +84,8 @@
     var spark = function (p, power) {
       if (live > 90 || !layer.animate) return;
       var el = doc.createElement('span');
-      var tone = Math.random();
-      el.className = 'mark3d__spark' + (tone < 0.35 ? ' mark3d__spark--light' : tone < 0.8 ? ' mark3d__spark--deep' : '');
+      el.className = 'mark3d__spark';
+      el.style.background = SPARK_COLORS[Math.floor(Math.random() * SPARK_COLORS.length)];
       var size = 12 + Math.random() * 20;
       var angle = Math.random() * Math.PI * 2;
       var dist = (26 + Math.random() * 58) * power;

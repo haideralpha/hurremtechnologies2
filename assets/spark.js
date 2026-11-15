@@ -196,7 +196,7 @@
     var c = doc.createElement('canvas'); c.width = 1200; c.height = 630;
     var g = c.getContext('2d');
     g.fillStyle = '#EEF4F2'; g.fillRect(0, 0, 1200, 630);
-    [[980, 140, 520, 'rgba(92,255,180,0.55)'], [1080, 520, 420, 'rgba(31,209,138,0.35)'], [140, 600, 380, 'rgba(92,255,180,0.3)']].forEach(function (b) {
+    [[980, 140, 520, 'rgba(163,31,96,0.3)'], [1080, 520, 420, 'rgba(32,64,154,0.3)'], [140, 600, 380, 'rgba(245,130,32,0.32)']].forEach(function (b) {
       var r = g.createRadialGradient(b[0], b[1], 0, b[0], b[1], b[2]);
       r.addColorStop(0, b[3]); r.addColorStop(1, 'rgba(238,244,242,0)');
       g.fillStyle = r; g.fillRect(0, 0, 1200, 630);
@@ -206,8 +206,8 @@
       var p = new Path2D(LOGO_PATH);
       g.save(); g.translate(820, 150); g.scale(0.34, 0.34);
       var lg = g.createLinearGradient(100, 500, 900, 500);
-      lg.addColorStop(0, '#5CFFB4'); lg.addColorStop(0.5, '#1FD18A'); lg.addColorStop(1, '#0B6B4A');
-      g.shadowColor = 'rgba(11,107,74,0.35)'; g.shadowBlur = 60; g.shadowOffsetY = 30;
+      [[0, '#FDB913'], [0.13, '#F58220'], [0.28, '#EC1C24'], [0.43, '#C41E4A'], [0.57, '#A31F60'], [0.75, '#6E347E'], [0.92, '#20409A']].forEach(function (s) { lg.addColorStop(s[0], s[1]); });
+      g.shadowColor = 'rgba(110,52,126,0.35)'; g.shadowBlur = 60; g.shadowOffsetY = 30;
       g.fillStyle = lg; g.fill(p); g.restore();
     } catch (e) {}
     var font = '"Google Sans", Roboto, Arial, sans-serif';
@@ -215,7 +215,7 @@
     g.fillText('H U R R E M   T E C H N O L O G I E S', 72, 92);
     g.fillStyle = '#05070D'; g.font = '500 40px ' + font;
     g.fillText(firstName(a.name) + '’s team could win back', 72, 220);
-    g.fillStyle = '#0B6B4A'; g.font = '500 150px ' + font;
+    g.fillStyle = '#A31F60'; g.font = '500 150px ' + font;
     var big = '~' + a.saved; g.fillText(big, 64, 370);
     var w = g.measureText(big).width;
     g.fillStyle = '#05070D'; g.font = '500 46px ' + font;
@@ -276,7 +276,7 @@
     var svg = doc.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', '-105 -105 210 210'); svg.setAttribute('class', 'spark__wheel-svg'); svg.setAttribute('aria-hidden', 'true');
     var n = WHEEL.length, step = 360 / n;
-    var fills = { 10: '#F7FAF9', 15: '#D3F5E4', 25: '#5CFFB4', 50: '#1FD18A', 100: '#0B6B4A' };
+    var fills = { 10: '#F7FAF9', 15: '#FDB913', 25: '#F58220', 50: '#A31F60', 100: '#20409A' };   // the logo colours
     WHEEL.forEach(function (off, i) {
       var a0 = (i * step - 90) * Math.PI / 180, a1 = ((i + 1) * step - 90) * Math.PI / 180;
       var p = doc.createElementNS(NS, 'path');
@@ -288,7 +288,7 @@
       t.setAttribute('transform', 'rotate(' + mid + ') translate(0 -66)');
       t.setAttribute('text-anchor', 'middle'); t.setAttribute('dominant-baseline', 'middle');
       t.setAttribute('font-size', off === 100 ? '15' : '14'); t.setAttribute('font-weight', '500');
-      t.setAttribute('fill', off === 100 ? '#FFFFFF' : '#05070D');
+      t.setAttribute('fill', off >= 50 ? '#FFFFFF' : '#05070D');
       t.textContent = off + '%';
       svg.appendChild(t);
     });
