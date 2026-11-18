@@ -31,7 +31,9 @@
 .at-logo{width:92px;height:92px;display:block;margin-bottom:1.2rem;filter:drop-shadow(0 10px 24px rgba(5,7,13,.14))}
 .at-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(163,31,96,.08);border:1px solid rgba(163,31,96,.22);padding:.5rem .95rem;border-radius:999px;margin-bottom:1.3rem}
 .at-word{background:var(--spectrum-text);-webkit-background-clip:text;background-clip:text;color:transparent}
-.apply-wrap{max-width:48rem}
+.apply-wrap{max-width:52rem}
+.tally-wrap{min-height:600px}
+.tally-wrap iframe{width:100%;border:0;background:transparent}
 .progress{display:flex;align-items:center;gap:1rem;margin-bottom:2rem}
 .progress .lbl{font-family:var(--sans);font-size:.95rem;font-weight:600;color:var(--ice-65);white-space:nowrap}
 .progress .bar{flex:1;height:8px;border-radius:999px;background:var(--ice-15);overflow:hidden}
@@ -118,88 +120,10 @@
 
 <section>
   <div class="wrap">
-    <div class="apply-wrap">
-      <div class="progress"><span class="lbl" id="stepLbl">Step 1 of 2 · Your details</span><div class="bar"><div class="fill" id="progFill" style="width:50%"></div></div></div>
-      <form id="contactForm" action="https://formspree.io/f/xwpbepoa" method="POST">
-        <input type="hidden" name="_subject" value="New AlphaTalk Teacher Application"/>
-        <input type="hidden" name="source" value="AlphaTalk Teacher Application"/>
-
-        <div class="fstep active" id="step1">
-          <div class="form-grid">
-            <div class="full"><input type="text" name="full_name" placeholder="Full name" class="field" required/></div>
-            <div><input type="email" name="email" placeholder="Email address" class="field" required/></div>
-            <div><input type="tel" name="phone" placeholder="Phone / WhatsApp" class="field" required/></div>
-            <div><input type="number" name="age" placeholder="Age" class="field" min="16" max="99"/></div>
-            <div><input type="text" name="nationality" placeholder="Nationality" class="field" required/></div>
-            <div class="full"><input type="text" name="degree" placeholder="Highest degree / qualification" class="field" required/></div>
-            <div class="full">
-              <span class="flabel">Subjects you can teach <small>(select all that apply)</small></span>
-              <div class="subj-grid" id="subjGrid">
-                <label class="subj"><input type="checkbox" name="subjects" value="English"/> English</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="French"/> French</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Spanish"/> Spanish</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Italian"/> Italian</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Science"/> Science</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Maths"/> Maths</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="IELTS"/> IELTS</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Business English"/> Business English</label>
-                <label class="subj"><input type="checkbox" name="subjects" value="Other"/> Other</label>
-              </div>
-            </div>
-            <div class="full"><input type="text" name="languages_spoken" placeholder="Languages you speak (e.g. English, Urdu, Arabic)" class="field" required/></div>
-            <div class="full"><input type="text" name="certifications" placeholder="Teaching certifications, if any (e.g. TEFL, TESOL, CELTA)" class="field"/></div>
-            <div class="full"><input type="text" name="availability" placeholder="Your free schedule / availability (e.g. weekday evenings, GMT+5)" class="field" required/></div>
-          </div>
-          <div class="fbtns"><button type="button" class="send" id="nextBtn" style="width:auto">Next →</button></div>
-        </div>
-
-        <div class="fstep" id="step2">
-          <div class="form-grid">
-            <div class="full"><input type="url" name="photo_link" placeholder="Profile photo link (Google Drive / image URL) — optional" class="field"/></div>
-            <div class="full">
-              <span class="flabel">Introductory video</span>
-              <div class="vid-instr">
-                <h4>Record a short intro for students &amp; parents</h4>
-                <p style="color:var(--ice-65);margin:0 0 .6rem">We show your video to students and parents for trial classes, so make it warm and natural:</p>
-                <ul>
-                  <li>Keep it <strong>under 40 seconds</strong></li>
-                  <li>Use <strong>good lighting</strong> (face a window or a lamp)</li>
-                  <li>Speak in <strong>simple, clear words</strong></li>
-                  <li>Use natural <strong>hand gestures</strong></li>
-                  <li><strong>Smile</strong> and show your energy</li>
-                </ul>
-                <p class="note">Upload it to <strong>Google Drive, YouTube (unlisted)</strong> or <strong>Loom</strong>, make sure the link is viewable, then paste it below.</p>
-              </div>
-              <input type="url" name="video_link" placeholder="Paste your introductory video link" class="field" required/>
-            </div>
-            <div class="row2 full">
-              <input type="number" name="desired_pay" placeholder="Desired hourly pay" class="field" min="1" required/>
-              <select name="currency" class="field" required>
-                <option value="" disabled selected>Currency</option>
-                <option value="USD">USD ($)</option>
-                <option value="EUR">EUR (€)</option>
-                <option value="GBP">GBP (£)</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="full"><textarea name="message" placeholder="Anything else you would like us to know? (optional)" class="field" rows="4"></textarea></div>
-            <div class="full">
-              <label class="consent">
-                <input type="checkbox" name="consent" value="agreed" required/>
-                <span>I agree to the <a href="/privacy-policy#alphatalk" target="_blank" rel="noopener">Privacy Policy</a>, and I consent to AlphaTalk / Hurrem Technologies using my introductory video to promote my teaching profile across its platforms and to share it with prospective students and parents for trial classes.</span>
-              </label>
-            </div>
-          </div>
-          <div class="fbtns">
-            <button type="button" class="btn-back" id="backBtn">← Back</button>
-            <button type="submit" class="send" id="submitBtn" style="flex:1">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              Submit Application
-            </button>
-          </div>
-        </div>
-      </form>
-      <div class="success-msg" id="successMsg">Submitted! Thank you for applying to teach with AlphaTalk. Our team will review your profile and introductory video and get back to you. You can also reach us on WhatsApp if you have any questions.</div>
+    <div class="tally-wrap">
+        <iframe data-tally-src="https://tally.so/embed/db0gYz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1400" frameborder="0" marginheight="0" marginwidth="0" title="AlphaTalk Teacher Application"></iframe>
+      </div>
+      <noscript><p style="color:var(--ice-65);text-align:center">Please enable JavaScript, or <a href="https://tally.so/r/db0gYz" target="_blank" rel="noopener">open the application form in a new tab</a>.</p></noscript>
     </div>
   </div>
 </section>
@@ -233,31 +157,7 @@
 </footer>
 
 <script>
-(function(){
-  var subj=document.querySelectorAll('#subjGrid .subj');
-  for(var i=0;i<subj.length;i++){(function(l){var cb=l.querySelector('input');cb.addEventListener('change',function(){l.classList.toggle('checked',cb.checked);});})(subj[i]);}
-  var step1=document.getElementById('step1'),step2=document.getElementById('step2');
-  var nextBtn=document.getElementById('nextBtn'),backBtn=document.getElementById('backBtn');
-  var stepLbl=document.getElementById('stepLbl'),progFill=document.getElementById('progFill');
-  function topOf(){return document.querySelector('.apply-wrap').getBoundingClientRect().top+window.scrollY-90;}
-  function go(n){
-    if(n===2){
-      var req=step1.querySelectorAll('[required]');
-      for(var i=0;i<req.length;i++){if(!req[i].reportValidity())return;}
-      if(document.querySelectorAll('#subjGrid input:checked').length===0){alert('Please select at least one subject you can teach.');return;}
-      step1.classList.remove('active');step2.classList.add('active');
-      stepLbl.innerHTML='Step 2 of 2 · Video &amp; pay';progFill.style.width='100%';
-    }else{
-      step2.classList.remove('active');step1.classList.add('active');
-      stepLbl.innerHTML='Step 1 of 2 · Your details';progFill.style.width='50%';
-    }
-    window.scrollTo({top:topOf(),behavior:'smooth'});
-  }
-  nextBtn.addEventListener('click',function(){go(2);});
-  backBtn.addEventListener('click',function(){go(1);});
-  var form=document.getElementById('contactForm');
-  form.addEventListener('submit',function(){var p=document.querySelector('.progress');if(p)p.style.display='none';});
-})();
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc;});};if("undefined"!=typeof Tally)v();else if(null===d.querySelector('script[src="'+w+'"]')){var s=d.createElement("script");s.src=w;s.onload=v;s.onerror=v;d.body.appendChild(s);}
 </script>
 <script src="assets/site.js?v=7" defer></script>
 <script src="assets/assistant.js?v=2" defer></script>
